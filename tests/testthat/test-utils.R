@@ -226,5 +226,24 @@ test_that("warnify() propagates errors as warnings", {
   )
 
   expect_equal(result, "warning")
+})
 
+test_that("plural() behaves as expected", {
+  expect_error(plural("foo", 1:2))
+
+  expect_equal(
+    plural("foo", 1),
+    "foo"
+  )
+
+  expect_equal(
+    plural("foo", 2),
+    "foos"
+  )
+
+  # From rstudio/renv#1733
+  expect_equal(
+    plural(c("foo", "bar"), 1:2),
+    c("foo", "bars")
+  )
 })

@@ -241,6 +241,12 @@ read <- function(file) {
 }
 
 plural <- function(word, n) {
+  stopifnot(length(word) == length(n))
+
+  if (length(word) > 1) {
+    return(map2_chr(word, n, plural))
+  }
+
   if (n == 1) word else paste(word, "s", sep = "")
 }
 
